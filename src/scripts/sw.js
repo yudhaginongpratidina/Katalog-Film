@@ -1,25 +1,35 @@
-/* eslint-disable no-unused-vars */
+import 'regenerator-runtime';
+import CacheHelper from './utils/cache-helper';
 
-// ====================================
-// MEMBUAT SERVICE WORKER LIFECYCLE
-// ====================================
+// DAFTAR ASET YANG AKAN DI CACHING
+const assetsToCache = [
+  './',
+  './icons/maskable_icon.png',
+  './icons/maskable_icon_x48.png',
+  './icons/maskable_icon_x72.png',
+  './icons/maskable_icon_x96.png',
+  './icons/maskable_icon_x128.png',
+  './icons/maskable_icon_x192.png',
+  './icons/maskable_icon_x384.png',
+  './icons/maskable_icon_x512.png',
+  './index.html',
+  './favicon.png',
+  './app.bundle.js',
+  './app.webmanifest',
+  './sw.bundle.js',
+];
 
+// MELAKUKAN CACHING
 self.addEventListener('install', (event) => {
-  console.log('Installing Service Worker ...');
-
-  // TODO: Caching App Shell Resource
+  event.waitUntil(CacheHelper.cachingAppShell([...assetsToCache]));
 });
 
+// MENGHAPUS CACHE YANG SUDAH TIDAK DIGUNAKAN
 self.addEventListener('activate', (event) => {
-  console.log('Activating Service Worker ...');
-
-  // TODO: Delete old caches
+  event.waitUntil(CacheHelper.deleteOldCache());
 });
 
+// CACHING DENGAN STATERGI STALE WHILE REALIDATE
 self.addEventListener('fetch', (event) => {
-  console.log(event.request);
-
-  event.respondWith(fetch(event.request));
-
-  // TODO: Add/get fetch request to/from caches
+  event.respondWith(CacheHelper.revalidateCache(event.request));
 });
