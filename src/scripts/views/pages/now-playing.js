@@ -1,3 +1,6 @@
+// IMPORT DATA HASING FACTHING API
+import TheMovieDbSource from '../../data/themoviedb-source';
+
 const NowPlaying = {
   async render() {
     return `
@@ -5,8 +8,10 @@ const NowPlaying = {
       `;
   },
 
+  // Fungsi ini akan dipanggil setelah render()
   async afterRender() {
-    // Fungsi ini akan dipanggil setelah render()
+    const movies = await TheMovieDbSource.nowPlayingMovies();
+    console.log(movies);
   },
 };
 
