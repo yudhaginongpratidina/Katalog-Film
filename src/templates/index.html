@@ -9,10 +9,37 @@
     <!-- ICON -->
     <link rel="icon" href="./favicon.png">
 
+    <!-- GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
     <!-- TITLE -->
     <title>KATALOG FILM</title>
 </head>
 <body>
     
+    <!-- HEADER -->
+    <header class="app-bar">
+        <div class="app-bar__menu">
+            <button id="hamburgerButton">☰</button>
+        </div>
+        <div class="app-bar__brand">
+            <h1>Movie Catalogue</h1>
+        </div>
+        <nav id="navigationDrawer" class="app-bar__navigation">
+            <ul>
+                <li><a href="#/now-playing">Now Playing</a></li>
+                <li><a href="#/upcoming">Upcoming</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- CONTENT -->
+    <main id="mainContent"></main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>All data obtained from <a href="https://themoviedb.org" target="_blank" rel="noreferrer">TheMovieDB</a></p>
+    </footer>
+
 </body>
 </html>
